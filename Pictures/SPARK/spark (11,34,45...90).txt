@@ -1,0 +1,15 @@
+import org.apache.spark.{SparkConf, SparkContext}
+object PartitionExample {
+def main(args: Array[String]): Unit = {
+val conf = new SparkConf().setAppName("PartitionExample").setMaster("local")
+val sc = new SparkContext(conf)
+val data = Array(11, 34, 45, 67, 3, 4, 90)
+val rdd = sc.parallelize(data, 3)
+val partitionedRDD = rdd.mapPartitionsWithIndex((index, iterator) => {
+iterator.map(element => (index, element + 1))
+})
+val results = partitionedRDD.collect()
+results.foreach { case (index, value) => println(s"Partition: $index, Value: $value") }
+sc.stop()
+}
+}

@@ -1,0 +1,21 @@
+object FactorialCollection {
+ // Function to calculate factorial of a number
+ def factorial(n: Int): Int = {
+ if (n == 0 || n == 1) 1
+ else n * factorial(n - 1)
+ }
+ // Function to compute factorial for each item in the collection
+ def computeFactorials(numbers: List[Int]): List[Int] = {
+ numbers.map(factorial)
+ }
+ def main(args: Array[String]): Unit = {
+ val numbers = List(5, 3, 7, 2, 4)
+ 
+ // Compute factorials for the numbers in the list
+ val factorialResults = computeFactorials(numbers)
+ // Print the results
+ factorialResults.zipWithIndex.foreach { case (factorialResult, index) =>
+ println(s"Factorial of ${numbers(index)} is $factorialResult")
+ }
+ }
+}

@@ -1,0 +1,8 @@
+object WordLengths {
+ def main(args: Array[String]): Unit = {
+ val words = Array("apple", "banana", "cherry", "date", "elderberry", "fig", "grape")
+ val wordLengths = words.map(word => (word, word.length))
+ println("Word lengths:")
+ wordLengths.foreach { case (word, length) => println(s"$word: $length") }
+ }
+}

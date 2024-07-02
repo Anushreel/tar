@@ -1,0 +1,23 @@
+import scala.io.StdIn
+
+object HighestWordLength {
+  def main(args: Array[String]): Unit = {
+    println("Enter words separated by spaces:")
+    val words = StdIn.readLine().trim().split("\\s+")
+    
+    if (words.isEmpty) {
+      println("No words entered. Exiting.")
+    } else {
+      // Find the word with maximum length
+      var maxLengthWord = words(0)
+      for (word <- words.tail) {
+        if (word.length > maxLengthWord.length) {
+          maxLengthWord = word
+        }
+      }
+
+      println(s"The word with the highest length is '$maxLengthWord' with length ${maxLengthWord.length}.")
+    }
+  }
+}
+

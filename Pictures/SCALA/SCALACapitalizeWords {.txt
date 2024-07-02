@@ -1,0 +1,10 @@
+object CapitalizeWords {
+ def capitalizeEachWord(sentence: String): String = {
+ sentence.split(" ").map(word => word.capitalize).mkString(" ")
+ }
+ def main(args: Array[String]): Unit = {
+ val sentence = "hello world this is scala"
+ val capitalizedSentence = capitalizeEachWord(sentence)
+ println(capitalizedSentence) // Output: "Hello World This Is Scala"
+ }
+}
