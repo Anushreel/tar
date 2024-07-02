@@ -1,0 +1,11 @@
+def quickSortFunctional(arr: List[Int]): List[Int] = {
+ if (arr.length <= 1) arr
+ else {
+ val pivot = arr(arr.length / 2)
+ quickSortFunctional(arr.filter(_ < pivot)) ++ arr.filter(_ == pivot) ++ 
+quickSortFunctional(arr.filter(_ > pivot))
+ }
+}
+// Example usage:
+val list = List(10, 7, 8, 9, 1, 5)
+println(quickSortFunctional(list).mkString(", "))

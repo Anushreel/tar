@@ -1,0 +1,13 @@
+val items = Map("Butter" -> 20, "Bun" -> 10, "Egg" -> 7, "Biscuit" -> 25, 
+"Bread" -> 15)
+// i. Display item-name and quantity
+items.foreach { case (name, quantity) => println(s"$name: $quantity") }
+// ii. Display sum of quantity and total number of items
+val totalQuantity = items.values.sum
+val totalItems = items.size
+// iii. Add 3 Buns to the collection
+val updatedItems = items.updated("Bun", items("Bun") + 3)
+// iv. Add new item "Cheese" with quantity 12 to the collection
+val finalItems = updatedItems + ("Cheese" -> 12)
+finalItems.foreach { case (name, quantity) => println(s"$name: 
+$quantity") }

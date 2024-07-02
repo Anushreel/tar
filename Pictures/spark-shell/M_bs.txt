@@ -1,0 +1,16 @@
+def binarySearch(arr: Array[Int], target: Int): Boolean = {
+ def search(low: Int, high: Int): Boolean = {
+ if (low > high) false
+ else {
+ val mid = (low + high) / 2
+ if (arr(mid) == target) true
+ else if (arr(mid) > target) search(low, mid - 1)
+ else search(mid + 1, high)
+ }
+ }
+ search(0, arr.length - 1)
+}
+// Example usage:
+val sortedList = Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+val numberToSearch = 5
+println(binarySearch(sortedList, numberToSearch))

@@ -1,0 +1,8 @@
+def factorial(n: Int): Int = {
+ if (n <= 1) 1
+ else n * factorial(n - 1)
+}
+// Example usage:
+val items = List(2, 3, 4, 5)
+val factorials = items.map(factorial)
+println(factorials)
