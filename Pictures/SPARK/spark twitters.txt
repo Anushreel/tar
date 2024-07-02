@@ -1,39 +1,43 @@
-import org.apache.spark.SparkContext
-import org.apache.spark.SparkConf
+import org.apache.spark.{SparkContext, SparkConf}
 
 object tweetMining {
-
-val conf = new SparkConf().setAppName("Tweet App").setMaster("local[*]")
+val conf = new SparkConf().setAppName("User Mining").setMaster("local[*]")
 val sc = new SparkContext(conf)
 
-  def main(args: Array[String]) {
-  
-      var pathToFile="tweet.json"
-      val tweets=sc.textFile("tweet.json").mapPartitions(TweetUtils.parseFromJson(_))
-      val tweetsByUser=tweets.map(x=>(x.user,x)).groupByKey()
-      val numOfTweets=tweetsByUser.map(x=>(x._1,x._2.size))
-      val sorted= numOfTweets.sortBy(_._2,ascending=false)
-      
-      sorted.take(10).foreach(println)
-      val top = sorted.take(10)
-    
-      sc.parallelize(top).saveAsTextFile("top10twts")
-      }
-      }
-      import com.google.gson._
-      object TweetUtils{
-      case class Tweet(
-      			id:String,
-      			user:String,
-      			text:String,
-      			place:String,
-      			country:String
+var pathToFile = "rt.json"
 
-      			)
-      			
-      def parseFromJson(lines:Iterator[String]):Iterator[Tweet]={
-      val gson=new Gson
-      lines.map(line=> gson.fromJson(line,classOf[Tweet]))
-      }
-      }
-      
+def main(args: Array[String]) {
+//if(args.length != 1) {
+// println("File does not exist!")
+// System.exit(1)
+//}
+
+//pathToFile = args(0)
+
+val tweets = sc.textFile(pathToFile).mapPartitions(TweetUtils.parseFromJson(_))
+val tweetsByUser = tweets.map(x => (x.user, x)).groupByKey()
+val numberOfTweets = tweetsByUser.map(x => (x._1, x._2.size))
+val sorted = numberOfTweets.sortBy(_._2, ascending = false)
+
+sorted.take(10).foreach(println)
+}
+}
+
+import com.google.gson._
+
+object TweetUtils {
+case class Tweet(
+id : String,
+user: String,
+userName: String,
+text: String,
+place: String,
+country: String,
+lang: String
+)
+
+def parseFromJson(lines: Iterator[String]): Iterator[Tweet] = {
+val gson = new Gson
+lines.map(line => gson.fromJson(line, classOf[Tweet]))
+}
+}
