@@ -1,0 +1,4 @@
+val words = Array("apple", "banana", "cherry")
+for(i <- 0 until words.length){
+  println(words(i).length)
+}

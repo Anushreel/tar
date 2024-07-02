@@ -1,0 +1,25 @@
+abstract class Notification 
+case class Email(sender: String, title: String, body: String) extends Notification 
+case class SMS(caller: String, message: String) extends Notification 
+object NotificationExample { 
+def showNotification(notification: Notification): String = { 
+notification match { 
+case Email(sender, title, _) => 
+s"You got an email from $sender with title: $title" 
+case SMS(caller, message) => 
+s"You got an SMS from $caller! Message: $message" 
+} 
+} 
+def main(args: Array[String]): Unit = { 
+val email = Email("john.doe@example.com", "Meeting Reminder", "Don't forget the meeting at 10") 
+val sms = SMS("123-456-7890", "Your package has been delivered.") 
+println(showNotification(email)) 
+println(showNotification(sms)) 
+} 
+}
+
+// Example usage:
+val someEmail = Email("john.doe@example.com", "Meeting Reminder", "Don't forget our meeting at 10 AM.")
+val someSMS = SMS("123-456-7890", "Hi, are you available for a call?")
+println(showNotification(someEmail))
+println(showNotification(someSMS))

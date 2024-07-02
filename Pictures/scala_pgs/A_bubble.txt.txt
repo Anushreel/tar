@@ -1,0 +1,16 @@
+def bubbleSort(arr: Array[Int]): Array[Int] = {
+  for (i <- 0 until arr.length - 1) {
+    for (j <- 0 until arr.length - i - 1) {
+      if (arr(j) > arr(j + 1)) {
+        val temp = arr(j)
+        arr(j) = arr(j + 1)
+        arr(j + 1) = temp
+      }
+    }
+  }
+  arr
+}
+
+// Example usage:
+val arr = Array(64, 34, 25, 12, 22, 11, 90)
+println(bubbleSort(arr).mkString(", "))

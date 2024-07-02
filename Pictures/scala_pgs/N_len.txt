@@ -1,0 +1,9 @@
+def findLongestWord(words: Array[String]): (String, Int) = {
+ words.map(word => (word, word.length)).maxBy(_._2)
+}
+
+
+// Example usage:
+val words = Array("games", "television", "rope", "table")
+val longestWord = findLongestWord(words)
+println(longestWord)

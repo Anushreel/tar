@@ -1,0 +1,9 @@
+6. Write a scala function to convert the each word to capitalize each word 
+in the given sentence.
+def capitalizeWords(sentence: String): String = {
+  sentence.split(" ").map(_.capitalize).mkString(" ")
+}
+
+// Example usage:
+val sentence = "hello world from scala"
+println(capitalizeWords(sentence))

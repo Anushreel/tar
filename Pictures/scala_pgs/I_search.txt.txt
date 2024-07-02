@@ -1,0 +1,7 @@
+def searchElement(numbers: List[Int], target: Int): Boolean = {
+ numbers.contains(target)
+}
+// Example usage:
+val numbers = List(1, 2, 3, 4, 5)
+val target = 3
+println(searchElement(numbers, target))
